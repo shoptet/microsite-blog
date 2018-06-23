@@ -4,3 +4,7 @@ $colorbox-path: "../../../scaffolding/img/colorbox/";
 
 @import "../../scaffolding/shoptet";
 @import "modules/variables";
+
+.section-hidden {
+    display: none;
+}
