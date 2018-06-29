@@ -28,7 +28,16 @@ foreach ( $pages as $page ) {
 }
 
 wp_reset_query();
-echo $output;
+?>
+<?php get_template_part( 'template-parts/page/content', 'title' ); ?>
+<section class="section section-primary">
+    <div class="section-inner container">
+        <?php
+        echo $output;
+        ?>
+    </div>
+</section>
+<?php
 ?>
 
 <?php get_footer(); ?>

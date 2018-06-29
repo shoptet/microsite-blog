@@ -12,6 +12,7 @@ module.exports = function(grunt) {
                     sourcemap: 'inline'
                 },
                 files: {
+                    'dist/css/shoptet.css': '../scaffolding/shoptet.scss',
                     'dist/css/main.css': '_scss/main.scss'
                 }
             },
@@ -20,6 +21,7 @@ module.exports = function(grunt) {
                     style: 'compressed'
                 },
                 files: {
+                    'dist/css/shoptet.css': '../scaffolding/shoptet.scss',
                     'dist/css/main.css': '_scss/main.scss'
                 }
             }
