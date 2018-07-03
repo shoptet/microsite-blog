@@ -1,14 +1,14 @@
 {
-  "name": "shoptet-doplnky",
+  "name": "shoptet-microsite-blog",
   "version": "1.0.0",
   "author": "Shoptet s.r.o. , https://www.shoptet.cz/",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Shoptet/microsite-doplnky.git"
+    "url": "https://github.com/Shoptet/microsite-blog.git"
   },
   "bugs": {
-    "url": "https://github.com/Shoptet/microsite-doplnky/issues"
+    "url": "https://github.com/Shoptet/microsite-blog/issues"
   },
   "devDependencies": {
     "grunt": "^1.0.2",

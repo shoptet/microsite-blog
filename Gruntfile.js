@@ -12,7 +12,7 @@ module.exports = function(grunt) {
                     sourcemap: 'inline'
                 },
                 files: {
-                    'dist/css/shoptet.css': '../scaffolding/shoptet.scss',
+                    '../scaffolding/shoptet.css': '../scaffolding/shoptet.scss',
                     'dist/css/main.css': '_scss/main.scss'
                 }
             },
@@ -21,7 +21,7 @@ module.exports = function(grunt) {
                     style: 'compressed'
                 },
                 files: {
-                    'dist/css/shoptet.css': '../scaffolding/shoptet.scss',
+                    '../scaffolding/shoptet.css': '../scaffolding/shoptet.scss',
                     'dist/css/main.css': '_scss/main.scss'
                 }
             }
@@ -31,9 +31,10 @@ module.exports = function(grunt) {
                 files: [
                     '_scss/*.scss',
                     '_scss/modules/*.scss',
+                    '../scaffolding/shoptet.scss',
                     '../scaffolding/shoptet/*.scss'
                 ],
-                tasks: ['sass:development'],
+                tasks: ['sass:production'],
                 options: {
                     livereload: 35729
                 }
@@ -42,7 +43,7 @@ module.exports = function(grunt) {
                 files: [
                     '_js/*.js'
                 ],
-                tasks: ['uglify:development'],
+                tasks: ['uglify:production'],
                 options: {
                     livereload: 35729
                 }
@@ -73,6 +74,7 @@ module.exports = function(grunt) {
     grunt.registerTask('default', ['watch']);
     grunt.registerTask('build', ['uglify-js', 'compile-css']);
     grunt.registerTask('uglify-js', ['uglify:production']);
+    grunt.registerTask('uglify-js-dev', ['uglify:development']);
     grunt.registerTask('compile-css', ['sass:production']);
     grunt.registerTask('compile-css-dev', ['sass:development']);
 
