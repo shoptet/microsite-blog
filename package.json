@@ -24,6 +24,7 @@
     "../scaffolding/vendor/bs/js/util.js",
     "../scaffolding/vendor/bs/js/dropdown.js",
     "../scaffolding/vendor/jquery.colorbox-min.js",
+    "../scaffolding/shoptet/js/shoptet.js",
     "_js/main.js"
   ]
 }
