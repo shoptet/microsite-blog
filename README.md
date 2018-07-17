@@ -1,4 +1,4 @@
-# Shoptet "design guide" microsite template
+# Shoptet "blog" microsite template
 
 ## Prerequisities
 
