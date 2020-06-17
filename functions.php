@@ -6,5 +6,5 @@ function resolveLanguage()
     }
     return 'cs_CZ';
 };
-add_filter('locale', resolveLanguage);
+add_filter('locale', 'resolveLanguage');
 ?>
