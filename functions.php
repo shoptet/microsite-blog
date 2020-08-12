@@ -8,6 +8,18 @@ function resolveLanguage()
 };
 add_filter('locale', 'resolveLanguage');
 
+/**
+ * Load translations
+ */
+add_action( 'after_setup_theme', function () {
+  load_theme_textdomain( 'shoptet', get_template_directory() . '/languages' );
+  $domain = 'shoptet';
+  $locale = apply_filters( 'theme_locale', determine_locale(), $domain );
+  $mofile = $domain . '-' . $locale . '.mo';
+  $path = get_template_directory() . '/languages/' . $mofile;
+  load_textdomain( $domain, $path );
+} );
+
 function prepend_event_date ( $content ) {
   $options = get_fields( 'options' );
   $event_category_id = $options[ 'event_category_id' ];
