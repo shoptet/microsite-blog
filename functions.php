@@ -1,12 +1,15 @@
 <?php
-function resolveLanguage()
-{
-    if (strpos($_SERVER["SERVER_NAME"], 'blog.shoptet.hu') !== FALSE) {
-        return 'hu_HU';
-    }
-    return 'cs_CZ';
-};
-add_filter('locale', 'resolveLanguage');
+
+/**
+ * Load translations
+ */
+add_action( 'after_setup_theme', function () {
+  $domain = 'shoptet';
+  $locale = apply_filters( 'theme_locale', determine_locale(), $domain );
+  $mofile = $domain . '-' . $locale . '.mo';
+  $path = get_template_directory() . '/languages/' . $mofile;
+  load_textdomain( $domain, $path );
+} );
 
 function prepend_event_date ( $content ) {
   $options = get_fields( 'options' );
