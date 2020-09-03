@@ -13,6 +13,11 @@ add_action( 'after_setup_theme', function () {
 
 function prepend_event_date ( $content ) {
   $options = get_fields( 'options' );
+
+  if ( !isset($options[ 'event_category_id' ]) ) {
+    return $content;
+  }
+
   $event_category_id = $options[ 'event_category_id' ];
 
   if ( ! has_category( $event_category_id ) ) return $content;
@@ -55,6 +60,11 @@ add_filter( 'the_content', function ( $content ) {
  */
 add_action( 'wp_head', function () {
   $options = get_fields( 'options' );
+
+  if ( !isset($options[ 'event_category_id' ]) ) {
+    return;
+  }
+
   $event_category_id = $options[ 'event_category_id' ];
   ?>
   <style>
@@ -80,6 +90,11 @@ add_action( 'pre_get_posts', function( $wp_query ) {
   if ( ! $wp_query->is_main_query() || is_admin() ) return;
   
   $options = get_fields( 'options' );
+
+  if ( !isset($options[ 'event_category_id' ]) ) {
+    return;
+  }
+
   $event_category_id = $options[ 'event_category_id' ];
   
   if ( ! $event_category_id || ! $wp_query->is_category( $event_category_id ) ) return;
@@ -97,6 +112,11 @@ add_action( 'pre_get_posts', function( $wp_query ) {
   if ( ! $wp_query->is_home() || is_admin() || $wp_query->get( 'post_type' ) !== 'post' ) return;
 
   $options = get_fields( 'options' );
+
+  if ( !isset($options[ 'event_category_id' ]) ) {
+    return;
+  }
+
   $event_category_id = $options[ 'event_category_id' ];
 
   if ( ! $event_category_id ) return;
