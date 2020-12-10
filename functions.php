@@ -36,6 +36,18 @@ function prepend_event_date ( $content ) {
 }
 
 /**
+ * Add query arguments to post count api
+ */
+add_filter( 'shoptet_post_count_query_args', function($query_args) {
+  return [
+    'blogArticlesCount' => [
+      'post_type' => 'post',
+      'post_status' => 'publish',
+    ],
+  ];
+} );
+
+/**
  * Add date of event to event category post and its excerpt
  */
 add_filter( 'get_the_excerpt', 'prepend_event_date' );
