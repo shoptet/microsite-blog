@@ -55,6 +55,15 @@ add_filter( 'the_content', function ( $content ) {
   if ( is_singular() ) return prepend_event_date( $content );
   return $content;
 } );
+ 
+add_filter( 'entry_date', function ( $date, $post ) {
+  $show_modified_date = get_field( 'show_modified_date', $post );
+  if ($show_modified_date) {
+    $modified_date = get_the_modified_date( 'd. m. Y', $post );
+    $date .= ' <em>('. sprintf( __( 'Aktualizováno %s', 'shp-blog' ), $modified_date ) . ')</em>';
+  }
+  return $date;
+}, 10, 2 );
 
 /**
  * Hide a date of publish for event category post and its excerpt
