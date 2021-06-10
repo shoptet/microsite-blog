@@ -55,7 +55,10 @@ add_filter( 'the_content', function ( $content ) {
   if ( is_singular() ) return prepend_event_date( $content );
   return $content;
 } );
- 
+
+/**
+ * Add post modified date next to publish date
+ */
 add_filter( 'entry_date', function ( $date, $post ) {
   $show_modified_date = get_field( 'show_modified_date', $post );
   if ($show_modified_date) {
