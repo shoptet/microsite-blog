@@ -1,5 +1,8 @@
 <?php
 
+// Prevent Yoast SEO from removing the comment reply feature
+add_filter( 'wpseo_remove_reply_to_com', '__return_false' );
+
 function prepend_event_date ( $content ) {
   $options = get_fields( 'options' );
 
