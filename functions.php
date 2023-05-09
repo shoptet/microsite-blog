@@ -159,3 +159,13 @@ if( function_exists( 'acf_add_options_page' ) ) {
 		'icon_url' => 'dashicons-welcome-widgets-menus',
 	] );
 }
+
+add_filter( 'the_content', function( $content ) {
+  if (get_field('show_author')) {
+    ob_start();
+    get_template_part('src/template-parts/post/content', 'author');
+    $content .= ob_get_contents();
+    ob_end_clean();
+  }
+  return $content;
+} );
