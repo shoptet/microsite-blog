@@ -169,3 +169,45 @@ add_filter( 'the_content', function( $content ) {
   }
   return $content;
 } );
+
+add_filter( 'shp_dl_page', function( $page ) {
+  $page['category'] = get_the_first_category();
+  $page['subCategory'] = get_the_first_subcategory();
+  $page['type'] = get_datalayer_type();
+  return $page;
+} );
+
+function get_the_first_category($subcategories_only = false) {
+  $category = 'not_available_DL';
+  if (is_category() && $term = get_queried_object()) {
+    if ($term->parent > 0) {
+      $category = $subcategories_only ? $term->name : get_cat_name($term->parent);
+    } else if ($term->parent == 0 && !$subcategories_only) {
+      $category = $term->name;
+    }
+  } else if (is_single() && $categories = get_the_category()) {
+    $categories = array_values(array_filter($categories, function ($c) use ($subcategories_only) {
+      return $subcategories_only ? $c->parent > 0 : $c->parent == 0;
+    }));
+    if ($categories) {
+      $category = $categories[0]->name;
+    }
+  }
+  return $category;
+}
+
+function get_the_first_subcategory() {
+  return get_the_first_category(true);
+}
+
+function get_datalayer_type() {
+  $type = 'other';
+  if (is_front_page()) {
+    $type = 'home';
+  } else if (is_category()) {
+    $type = 'category';
+  } else if (is_single()) {
+    $type = 'article';
+  }
+  return $type;
+}
