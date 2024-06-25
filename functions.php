@@ -174,6 +174,13 @@ add_filter( 'shp_dl_page', function( $page ) {
   $page['category'] = get_the_first_category();
   $page['subCategory'] = get_the_first_subcategory();
   $page['type'] = get_datalayer_type();
+  if (is_category()) {
+    $page['title'] = single_cat_title('', false);
+  } elseif (is_tag()) {
+    $page['title'] = single_tag_title('', false);
+  } elseif (is_author()) {
+    $page['title'] = get_the_author();
+  }
   return $page;
 } );
 
