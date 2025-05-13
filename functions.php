@@ -180,6 +180,8 @@ add_filter( 'shp_dl_page', function( $page ) {
     $page['title'] = single_tag_title('', false);
   } elseif (is_author()) {
     $page['title'] = get_the_author();
+  } elseif ( is_search() ) {
+    $page['title'] = __( 'Search results for', 'shoptet' ) . ' ' . get_search_query();
   }
   return $page;
 } );
