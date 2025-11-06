@@ -1,7 +1,7 @@
 ready(function () {
   if (window.dl) {
     pushPageView();
-    initSearch();
+    maybePushSearch();
     initButtonClick();
     initFormSubmit();
   }
@@ -15,6 +15,18 @@ var pushPageView = function () {
   };
   console.log(pageView); // remove
   dataLayer.push(pageView);
+};
+
+var maybePushSearch = function () {
+  if (!window.dl.search) return;
+  var search = {
+    event: 'search',
+    search: window.dl.search,
+    page: preparePage(window.dl.page),
+    user: window.dl.user,
+  };
+  dataLayer.push(search);
+  console.log(search); // remove
 };
 
 var initButtonClick = function () {
@@ -44,12 +56,6 @@ var initFormSubmit = function () {
   });
   document.querySelectorAll('.wpcf7').forEach(function (el) {
     el.addEventListener('wpcf7mailsent', function () { handleFormSubmit(el); });
-  });
-};
-
-var initSearch = function () {
-  document.querySelectorAll('form[data-search]').forEach(function (el) {
-    el.addEventListener('submit', function () { handleSearch(el); });
   });
 };
 
@@ -104,30 +110,6 @@ var pushFormSubmit = function (form, user) {
   };
   dataLayer.push(formSubmit);
   console.log(formSubmit); // remove
-};
-
-var handleSearch = function (el) {
-  var user = window.dl.user;
-  var searchInput = el.querySelector('input[type=search]');
-  var term = searchInput && searchInput.value;
-
-  var search = {
-    event: 'search',
-    search: {
-      type: 'page',
-      term: term,
-      results: {
-        articles: -1,
-        categories: -1,
-        products: -1,
-        other: -1,
-      },
-    },
-    page: preparePage(window.dl.page),
-    user: user,
-  };
-  dataLayer.push(search);
-  console.log(search); // remove
 };
 
 var preparePage = function (page) {
